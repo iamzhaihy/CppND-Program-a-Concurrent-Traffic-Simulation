@@ -83,6 +83,7 @@ void TrafficLight::cycleThroughPhases()
 
         if (elapsedTime >= cycleDuration) 
         {
+            std::lock_guard<std::mutex> lck(_mutex);
             TrafficLightPhase newPhase = (_currentPhase == TrafficLightPhase::red)
                             ? TrafficLightPhase::green
                             : TrafficLightPhase::red;
